@@ -25,6 +25,7 @@ const Signup = () => {
                 localStorage.setItem("userToken",response.data.token)
                 console.log(response.data.message)
                 toast.success(<Text weight="bold">{response.data.message}</Text>)
+                window.location = '/'
               }
 
               

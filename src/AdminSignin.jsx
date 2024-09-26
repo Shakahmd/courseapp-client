@@ -20,6 +20,7 @@ const AdminSignin = () => {
              if(response.status === 200){
                 toast.success(<Text weight='bold'>{response.data.message}</Text>)
                 localStorage.setItem("adminToken",response.data.token)
+                window.location = '/'
              }
             
         } catch (error) {

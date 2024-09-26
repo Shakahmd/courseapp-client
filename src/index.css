@@ -3,6 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@media (max-width: 300px) {
+  .radix-grid {
+    columns: 1; /* Display one column per row */
+  }
+}
+
 *{
   margin:0;
   padding:0;

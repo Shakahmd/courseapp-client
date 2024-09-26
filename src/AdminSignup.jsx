@@ -20,6 +20,7 @@ const AdminSignup = () => {
                  console.log(response.data.message)
                  localStorage.setItem('AdminToken',response.data.token)
                  toast.success(<Text weight='bold'>{response.data.message}</Text>)
+                 window.location = '/'
             } catch (error) {
                  console.log(error.response)
                   if(error.response.status >= 400 && error.response.status < 500){

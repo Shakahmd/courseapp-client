@@ -21,6 +21,7 @@ const SignIn = () => {
                if(response.status === 200){
                   localStorage.setItem("userToken",response.data.token)
                   toast.success(<Text weight='bold'>{response.data.message}</Text>)
+                  window.location = '/'
                }
             
         } catch (error) {

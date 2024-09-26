@@ -9,6 +9,7 @@ import NavBar from './NavBar'
 import AddCourse from './AddCourse'
 import AdminSignup from './AdminSignup'
 import AdminSignin from './AdminSignin'
+import Courses from './Courses'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
        <Router>
      <NavBar/>
       <Routes>
+        <Route path='/courses' element={<Courses/>}/>
         <Route path="/e/adminSignIn" element={<AdminSignin/>}/>
         <Route path="/e/adminSignUp" element={<AdminSignup/>}/>
         <Route path="/addCourse" element={<AddCourse/>}/>

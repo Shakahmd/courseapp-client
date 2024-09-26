@@ -8,7 +8,6 @@ import toast,{Toaster} from 'react-hot-toast'
 const AddCourse = () => {
       const baseUrl = useBaseUrl()
           const [courseImage,setCourseImage]  =useState({})
-          const [imageUrl,setImageUrl] = useState('')
           const [courseData,setCourseData] = useState({
             title:"",
             description:"",
