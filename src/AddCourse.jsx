@@ -3,10 +3,16 @@ import { Box,TextField,Card,Inset,Text,Flex ,Heading,Radio,Button} from '@radix-
 import { useBaseUrl } from './hook/useUrl'
 import axios from 'axios'
 import toast,{Toaster} from 'react-hot-toast'
+import { useLocation } from 'react-router-dom'
 
 
 const AddCourse = () => {
       const baseUrl = useBaseUrl()
+      const location = useLocation()
+      const {isUpdate,courseId} = location.state
+      console.log(isUpdate)
+      console.log(courseId)
+     
           const [courseImage,setCourseImage]  =useState({})
           const [courseData,setCourseData] = useState({
             title:"",
@@ -59,7 +65,13 @@ const AddCourse = () => {
                 console.log("No token available")
              }
 
-             const response = await axios.post(`${baseUrl}/admin/courses`,formData,{
+             const response = isUpdate === true ? await axios.put(`${baseUrl}/admin/courses/${courseId}`,formData,{
+              headers:{
+                "Content-Type":'multipart/form-data',
+                Authorization:`Bearer ${token}`
+            }
+             }) 
+             :await axios.post(`${baseUrl}/admin/courses`,formData,{
                 headers:{
                     "Content-Type":'multipart/form-data',
                     Authorization:`Bearer ${token}`
@@ -123,7 +135,7 @@ const AddCourse = () => {
               </div>
                   </Flex>
                <div className='mt-3'>
-               <Button variant='solid'color='blue' size='3' onClick={handleSubmit}>Done</Button>
+               <Button variant='solid'color='blue' size='3' onClick={handleSubmit}>{isUpdate===true?"Update":'Done'}</Button>
                </div>
              
         </Card>

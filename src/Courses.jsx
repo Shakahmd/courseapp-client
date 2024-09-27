@@ -2,6 +2,8 @@ import React ,{useEffect, useState}from 'react'
 import axios from 'axios'
 import { useBaseUrl } from './hook/useUrl'
 import { Card,Box,Inset,Flex,Text,Strong, Grid ,Blockquote,Button} from '@radix-ui/themes'
+import { useNavigate } from 'react-router-dom'
+
 const Courses = () => {
      const baseUrl = useBaseUrl()
      const [courses,setCourses] = useState([])
@@ -23,7 +25,8 @@ const Courses = () => {
          }
         getAllCourses()
        },[])
-
+        
+     
      
         
   return (
@@ -47,11 +50,12 @@ const Courses = () => {
 }
 
 const Course = ({courses,baseUrl}) =>{
+  const navigate = useNavigate()
    console.log(courses.title)
   return (
     
       <Box className='w-[400px] h-[400px] '>
-    <Card className='shadow-md'>
+    <Card className='shadow-md' >
    <Inset>
    <img
     
@@ -70,7 +74,10 @@ const Course = ({courses,baseUrl}) =>{
    <Text weight='bold' color='blue'>{courses.title}</Text>
     <Blockquote size='3' weight="medium" highContrast>{courses.description}</Blockquote>
     <Text weight='bold' color='gray'>{courses.price}/-</Text>
-   <Button variant='solid'color='blue'size='3'>Purchase</Button>
+   <Button variant='solid'color='blue'size='3'
+   onClick={()=>{
+    navigate(`/courses/${courses._id}`)
+ }}>Purchase</Button>
    </div>
    
    </Card>
