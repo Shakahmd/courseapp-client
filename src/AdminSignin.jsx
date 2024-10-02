@@ -20,7 +20,7 @@ const AdminSignin = () => {
              if(response.status === 200){
                 toast.success(<Text weight='bold'>{response.data.message}</Text>)
                 localStorage.setItem("adminToken",response.data.token)
-                window.location = '/'
+                window.location = '/e/dashboard'
              }
             
         } catch (error) {
@@ -34,8 +34,12 @@ const AdminSignin = () => {
      }
   return (
    <>
-    <AuthForm purpouse="AdminSignIn" handleChangeAdminSignIn={handleChangeAdminSignIn} handleSubmitAdminSignIn={handleSubmitAdminSignIn}/>
+
+      
+      <AuthForm purpouse="AdminSignIn" handleChangeAdminSignIn={handleChangeAdminSignIn} handleSubmitAdminSignIn={handleSubmitAdminSignIn}/>
     <Toaster/>
+  
+   
    </>
   )
 }

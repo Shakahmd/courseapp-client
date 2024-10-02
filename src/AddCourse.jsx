@@ -4,21 +4,21 @@ import { useBaseUrl } from './hook/useUrl'
 import axios from 'axios'
 import toast,{Toaster} from 'react-hot-toast'
 import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const AddCourse = () => {
       const baseUrl = useBaseUrl()
       const location = useLocation()
-      const {isUpdate,courseId} = location.state
-      console.log(isUpdate)
-      console.log(courseId)
+      const {isUpdate,courseId,courses} = location.state || {}
+      const navigate = useNavigate()
      
           const [courseImage,setCourseImage]  =useState({})
           const [courseData,setCourseData] = useState({
-            title:"",
-            description:"",
-            price:'',
-            published:false
+            title:isUpdate?courses.title:"",
+            description:isUpdate?courses.description:"",
+            price:isUpdate?courses.price:'',
+            published:isUpdate?courses.published:false
           })
           
         //   const handleFileChange = ({target}) =>{
@@ -70,7 +70,8 @@ const AddCourse = () => {
                 "Content-Type":'multipart/form-data',
                 Authorization:`Bearer ${token}`
             }
-             }) 
+             }
+            ) 
              :await axios.post(`${baseUrl}/admin/courses`,formData,{
                 headers:{
                     "Content-Type":'multipart/form-data',
@@ -81,7 +82,9 @@ const AddCourse = () => {
                  toast.success(<Text weight='bold'>{response.data.message}</Text>)
                  console.log(response.data.message)
                }
-               
+
+             
+                navigate('/e/dashboard')
        
              } catch (error) {
                   if(error.response.status >= 400 && error.response.status > 500){
@@ -121,14 +124,15 @@ const AddCourse = () => {
             <TextField.Root size='3' variant='classic' radius='large' type='number'
             name='price'
             value={courseData.price}
-            onChange={handleChange}/>
+            onChange={handleChange}
+            />
               <label>
              <Text weight='bold' trim='both' color='sky'>CourseImage</Text>
             </label>
             <TextField.Root className='py-3' size='3' variant='classic' type="file"  radius='large'
              name="courseImage"
-             value={courseData.courseImage}
              onChange={handleChange}/>
+             
               <div>
                 <label><Text weight='bold' trim='both' color='sky'>Published</Text></label>
                 <input type="checkbox" name='published' checked={courseData.published} onChange={handleChange}/>
@@ -139,6 +143,7 @@ const AddCourse = () => {
                </div>
              
         </Card>
+        
 
       </Box>
       <Toaster position='top-center'/>

@@ -1,9 +1,9 @@
 import React ,{useEffect, useState}from 'react'
 import axios from 'axios'
 import { useBaseUrl } from './hook/useUrl'
-import { Card,Box,Inset,Flex,Text,Strong, Grid ,Blockquote,Button} from '@radix-ui/themes'
+import { Card,Box,Inset,Flex,Text,Strong, Grid ,Blockquote,Button, Heading} from '@radix-ui/themes'
 import { useNavigate } from 'react-router-dom'
-
+import CourseCard from './components/CourseCard'
 const Courses = () => {
      const baseUrl = useBaseUrl()
      const [courses,setCourses] = useState([])
@@ -30,18 +30,25 @@ const Courses = () => {
      
         
   return (
-    <div className='mt-3 mx-4 h-screen overflow-auto flex flex-wrap justify-center gap-4  '>
-   
-   {courses.map((courses)=>{
-          return (
-              <div className='flex flex-row justify-center mt-3'>
-            <Course courses ={courses} baseUrl={baseUrl}/>
-            </div>
-              )
-          
-  })}
+     <div>
+      <div>
+      <Heading  size='9'  color='teal'className='flex justify-center'>Courses</Heading>
+      </div>
+  <div className='mt-3 mx-4 h-screen overflow-auto flex flex-wrap justify-center gap-4 '>
+           
+           {courses.map((courses)=>{
+                  return (
+                      <div className='flex flex-row justify-center mt-3 '>
+                    <Course courses ={courses} baseUrl={baseUrl}/>
+                   
+                    </div>
+                      )
+                  
+          })}
+             </div>
+        
      </div>
-
+   
     
   
    
@@ -51,42 +58,14 @@ const Courses = () => {
 
 const Course = ({courses,baseUrl}) =>{
   const navigate = useNavigate()
-   console.log(courses.title)
-  return (
-    
-      <Box className='w-[400px] h-[400px] '>
-    <Card className='shadow-md' >
-   <Inset>
-   <img
-    
-        src={`${baseUrl}/courseImage/${courses.imageLink}`}
-        alt="uploadedimage"
-        style={{
-          display: 'block',
-          objectFit: 'cover',
-          width: '100%',
-          height: 140,
-          backgroundColor: 'var(--gray-5)',
-        }}
-      />
-   </Inset>
-   <div className='mt-3  flex flex-col gap-9'>
-   <Text weight='bold' color='blue'>{courses.title}</Text>
-    <Blockquote size='3' weight="medium" highContrast>{courses.description}</Blockquote>
-    <Text weight='bold' color='gray'>{courses.price}/-</Text>
-   <Button variant='solid'color='blue'size='3'
-   onClick={()=>{
-    navigate(`/courses/${courses._id}`)
- }}>Purchase</Button>
-   </div>
-   
-   </Card>
-    </Box>
-    
   
+  return (
+     
+     <div className='mx-4 my-6'>
+         <CourseCard courses={courses} baseUrl={baseUrl}/>
+     </div>
     
- 
-  )
+      )
 }
 export default Courses
 
