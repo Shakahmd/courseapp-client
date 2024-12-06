@@ -9,11 +9,20 @@ const Course = () => {
     const [purchaseCourse, setPurchaseCourse] = useState(null)
     const baseUrl = useBaseUrl()
     const { courseId } = useParams()
+   
 
     useEffect(() => {
         const getSingleCourse = async () => {
             try {
-                const response = await axios.post(`${baseUrl}/user/courses/${courseId}`)
+              const token = localStorage.getItem("userToken")
+              if(!token){
+                console.log("No token available")
+             }
+                const response = await axios.post(`${baseUrl}/user/courses/${courseId}`,null,{
+                  headers:{
+                    Authorization:`Bearer ${token}`
+                  }
+                })
                 console.log(response.data)
                 setPurchaseCourse(response.data)
             } catch (error) {

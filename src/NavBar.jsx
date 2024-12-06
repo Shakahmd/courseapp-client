@@ -3,6 +3,7 @@ import { Button ,Text} from '@radix-ui/themes'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useBaseUrl } from './hook/useUrl'
+import ProfileCard from './components/ProfileCard'
 
 const NavBar = () => {
    const baseUrl = useBaseUrl()
@@ -54,7 +55,11 @@ console.log(profileDetails)
         <Text size='7' weight='medium'>CourseApp</Text>
           
          {profileDetails.admin ? (<div className='mx-3 flex gap-4 '>
-            <Text weight='bold'>{profileDetails.admin.email}</Text>
+            
+            <ProfileCard
+            email={profileDetails.admin.email}
+            name={profileDetails.admin.userName} />
+           
 
             <Button variant='solid'color='blue'size='3' onClick={()=>{
               localStorage.removeItem("adminToken")
@@ -64,7 +69,19 @@ console.log(profileDetails)
          </div>) 
             :(
               profileDetails.user ?(<div className='mx-3 flex gap-4 '>
-              <Text weight='bold'>{profileDetails.user.email}</Text>
+              
+              <ProfileCard 
+              email={profileDetails.user.email}
+              name={profileDetails.user.userName}
+               onClick ={()=>{
+                const data = {
+                  name:profileDetails.user.userName,
+                  email:profileDetails.user.email
+                }
+                 navigate("/profile",{state:data})
+               }}
+               />
+
   
               <Button variant='solid'color='blue'size='3' onClick={()=>{
                localStorage.removeItem("userToken")

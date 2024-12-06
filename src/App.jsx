@@ -14,6 +14,7 @@ import Course from './Course'
 import Dashboard from './Dashboard'
 import LandingPage from './LandingPage'
 import {RecoilRoot}from 'recoil'
+import Profile from './Profile'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,11 +29,12 @@ function App() {
         <Route path='/e/dashboard' element={<Dashboard/>}/>
         <Route path='/courses/:courseId'element={<Course/>}/>
         <Route path='/courses' element={<Courses/>}/>
-        <Route path="/e/adminSignIn" element={<AdminSignin/>}/>
-        <Route path="/e/adminSignUp" element={<AdminSignup/>}/>
+        <Route path="/e/signin" element={<AdminSignin/>}/>
+        <Route path="/e/signup" element={<AdminSignup/>}/>
         <Route path="/e/addCourse" element={<AddCourse/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<SignIn/>}/>
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
      </Router>
     </div>

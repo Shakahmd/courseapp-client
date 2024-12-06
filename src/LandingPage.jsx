@@ -3,6 +3,7 @@ import landing from './assets/landing.svg'
 import { Text,Container,Heading,Card,Button } from '@radix-ui/themes'
 import { useNavigate } from 'react-router-dom'
 
+
 const LandingPage = () => {
     const navigate = useNavigate()
      
@@ -16,12 +17,12 @@ const LandingPage = () => {
                 <Heading size='9' weight='medium'>Welcome to <span><Text weight='bold' color='blue'>CourseApp</Text></span><br />Learn And Grow</Heading>
                  <div className='mt-4'>
                  <Button onClick={()=>{
-                  
+
                   navigate('/courses')
                  }}>Courses</Button>
                  </div>
                
-               
+              
                 </Container>
             
          </div>
