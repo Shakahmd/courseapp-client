@@ -8,11 +8,11 @@ import { useBaseUrl } from './hook/useUrl'
 const SignIn = () => {
    const [signInData,setSignInData] = useState({})
     const baseUrl  = useBaseUrl()
-    console.log(baseUrl)
+   
   
    const handleChangeSignIn = (value) =>{
         setSignInData(value)
-        console.log(signInData)
+       
    }
      const handleSubmitSignIn = async() =>{
         try {
@@ -21,7 +21,7 @@ const SignIn = () => {
                if(response.status === 200){
                   localStorage.setItem("userToken",response.data.token)
                   toast.success(<Text weight='bold'>{response.data.message}</Text>)
-                  window.location = '/'
+                  window.location = '/courses'
                }
             
         } catch (error) {

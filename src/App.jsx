@@ -12,15 +12,19 @@ import AdminSignin from './AdminSignin'
 import Courses from './Courses'
 import Course from './Course'
 import Dashboard from './Dashboard'
+import LandingPage from './LandingPage'
+import {RecoilRoot}from 'recoil'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className=' bg-[#F9F9F8] overflow-hidden h-screen'>
+    <RecoilRoot>
+        <div className=' bg-[#F9F9F8] overflow-auto h-screen'>
        <Router>
      <NavBar/>
       <Routes>
+        <Route path="/" element={<LandingPage/>}/>
         <Route path='/e/dashboard' element={<Dashboard/>}/>
         <Route path='/courses/:courseId'element={<Course/>}/>
         <Route path='/courses' element={<Courses/>}/>
@@ -32,6 +36,9 @@ function App() {
       </Routes>
      </Router>
     </div>
+
+    </RecoilRoot>
+  
   )
 }
 

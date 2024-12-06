@@ -45,8 +45,11 @@ const Signup = () => {
      }
   return (
      <>
-       <AuthForm purpouse="SignUp" handleChangeSignUp={handleChangeSignUp} handleSubmitSignUp={handleSubmitSignUp}/>
-       <Toaster position='top-center'/>
+      
+        <AuthForm purpouse="SignUp" handleChangeSignUp={handleChangeSignUp} handleSubmitSignUp={handleSubmitSignUp}/>
+     
+    
+      <Toaster position='top-center'/>
      </>
    
   )

@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { Flex,TextField,Text ,Box,Card,Button,Heading} from '@radix-ui/themes'
+import { Link } from 'react-router-dom'
 
 const AuthForm = ({purpouse,
   handleChangeSignUp,
@@ -92,6 +93,9 @@ const AuthForm = ({purpouse,
          }
       }} >{purpouse}</Button>
       </div>
+     {
+      purpouse === "SignUp"?  <p className='text-center'>Already have a account ? go to <Link className='font-bold text-blue-500' to="/signin">Signin</Link> </p>:"" 
+     }
       
     </Flex>
             </Card>
